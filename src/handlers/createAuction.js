@@ -15,5 +15,3 @@ async function createAuction(event, context) {
 }
 
 export const handler = createAuction;
-
-
