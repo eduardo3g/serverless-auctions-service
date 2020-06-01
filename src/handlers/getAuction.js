@@ -17,7 +17,7 @@ export async function getAuctionById(id) {
 
   } catch (error) {
     console.log(error);
-    throw new createError.InternalServerError(error).JSON();
+    throw new createError.InternalServerError(error);
   }
 
   if (!auction) {
