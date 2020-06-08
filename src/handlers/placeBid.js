@@ -15,6 +15,15 @@ async function placeBid(event, context) {
 
   const auction = await getAuctionById(id);
 
+  if (email === auction.seller) {
+    throw new createError.Forbidden(`You cannot bid on your own auctions.`);
+  }
+
+  // Avoid double bidding
+  if (email === auction.highestBid.bidder) {
+    throw new createError.Forbidden(`You already the highest bidder.`);
+  }
+
   if (auction.status !== 'OPEN') {
     throw new createError.Forbidden('You cannot bid on closed auctions.');
   }
